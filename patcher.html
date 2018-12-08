@@ -163,12 +163,12 @@ function handleBps(rom, patch)
 	}
 }
 
-function tryPatch(romfile)
+function tryPatch()
 {
 	var romdata;
 	var bpsdata;
 	
-
+	var romfile = document.getElementById("file1").files[0];
 	var romReader = new FileReader();
 	romReader.onload = function() {
 		romdata = { bytes: this.result, name: romfile.name, mime: bpsfile.type };
@@ -183,29 +183,6 @@ function tryPatch(romfile)
 		if (romdata && bpsdata) handleBps(romdata, bpsdata);
 	};
 	bpsReader.readAsArrayBuffer(bpsfile);
-}
-
-function getChecksum(rom)
-{
-	var romChecksum = crc32(rom);
-	alert(romChecksum);
-}
-
-function grabPatch()
-{
-	var romdata;
-	alert("START");
-	var romfile = document.getElementById("file1").files[0];
-	var romReader = new FileReader();
-	
-	romReader.onload = function() {
-		romdata = { bytes: this.result, name: romfile.name, mime: bpsfile.type };
-		getChecksum(new Uint8Array(romdata.bytes));
-		
-	};
-	romReader.readAsArrayBuffer(romfile);
-		
-	alert("WW");
 
 }
 </script>
