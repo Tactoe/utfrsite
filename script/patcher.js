@@ -4,17 +4,6 @@ function el(e){return document.getElementById(e)}
 var STEAM_CHECKSUM = 3553786966;
 var GOG_CHECKSUM = 2028031612;
 
-function getBps(file)
-{
-var rawFile = new XMLHttpRequest();
-rawFile.open("GET", file, true);
-
-rawFile.onreadystatechange = function() {
-	console.log(rawFile)
-  alert(rawFile.responseText);
-}
-rawFile.send();
-}
 //no error checking, other than BPS signature, input size/crc and JS auto checking array bounds
 function applyBps(rom, patch)
 {
@@ -170,15 +159,11 @@ function tryPatch()
 	var romdata;
 	var bpsdata;
 	
-		
-	var bpsFakefile = getBps("patcher/patch_steam.bps");
 	var bpsfile = document.getElementById("file2").files[0];
-	console.log(bpsfile);
-	console.log(bpsFakefile);
 	var bpsReader = new FileReader();
 	bpsReader.onload = function() {
 		bpsdata = { bytes: this.result, name: bpsfile.name, mime: bpsfile.type };
-		//if (romdata && bpsdata) handleBps(romdata, bpsdata);
+		if (romdata && bpsdata) handleBps(romdata, bpsdata);
 	};
 	bpsReader.readAsArrayBuffer(bpsfile);
 	
@@ -186,7 +171,7 @@ function tryPatch()
 	var romReader = new FileReader();
 	romReader.onload = function() {
 		romdata = { bytes: this.result, name: romfile.name, mime: bpsfile.type };
-		//if (romdata && bpsdata) handleBps(romdata, bpsdata);
+		if (romdata && bpsdata) handleBps(romdata, bpsdata);
 	};
 	romReader.readAsArrayBuffer(romfile);
 
