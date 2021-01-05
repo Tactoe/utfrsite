@@ -147,7 +147,7 @@ function handleBps(rom, patch)
 		}
 		basename = patch.name.substring(0, patch.name.lastIndexOf("."));
 		ext = '.'+rom.name.split(".").pop();
-		download(ret, basename+ext, rom.mime);
+		download(ret, rom.name, rom.mime);
 	} catch(e) {
 		if (typeof(e)=='string') document.getElementById("error").textContent = e;
 		else throw e;
