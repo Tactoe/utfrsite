@@ -70,8 +70,8 @@ function set_selected_button()
 		case "download.html":
       select_button(document.getElementById("download"));
 		break;
-		case "avancement.html":
-      select_button(document.getElementById("avancement"));
+		case "patcher.html":
+      select_button(document.getElementById("patcher"));
 		break;
 		case "equipe.html":
       select_button(document.getElementById("equipe"));
